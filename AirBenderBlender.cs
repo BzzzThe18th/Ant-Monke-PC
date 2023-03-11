@@ -22,6 +22,7 @@ namespace AntMonkePC
         void OnDisable()
         {
             GorillaLocomotion.Player.Instance.gameObject.GetComponent<SizeManager>().enabled = true;
+            GorillaLocomotion.Player.Instance.scale = 1f;
             HamburgerPickles.NoPicklesPls();
         }
 
@@ -49,6 +50,7 @@ namespace AntMonkePC
                 if (rSC && lG && !lSC)
                 { 
                     GorillaLocomotion.Player.Instance.gameObject.GetComponent<SizeManager>().enabled = true;
+                    GorillaLocomotion.Player.Instance.scale = 1f;
                 }
             }
         }
@@ -65,6 +67,7 @@ namespace AntMonkePC
         {
             inRoom = false;
             GorillaLocomotion.Player.Instance.gameObject.GetComponent<SizeManager>().enabled = true;
+            GorillaLocomotion.Player.Instance.scale = 1f;
         }
     }
 }
