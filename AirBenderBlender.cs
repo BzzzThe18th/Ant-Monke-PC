@@ -10,7 +10,6 @@ namespace AntMonkePC
     public class AntPlugin : BaseUnityPlugin
     {
         bool inRoom;
-        VRRig r;
         XRNode rNode = XRNode.RightHand;
         XRNode lNode = XRNode.LeftHand;
 
@@ -36,15 +35,6 @@ namespace AntMonkePC
                 InputDevices.GetDeviceAtXRNode(lNode).TryGetFeatureValue(CommonUsages.primary2DAxisClick, out lSC);
                 bool lG;
                 InputDevices.GetDeviceAtXRNode(lNode).TryGetFeatureValue(CommonUsages.gripButton, out lG);
-
-                if (r == null || r.photonView == null)
-                {
-                    VRRig[] rs = FindObjectsOfType<VRRig>();
-                    foreach (VRRig rig in rs)
-                    {
-                        if (rig.photonView != null && rig.photonView.IsMine) r = rig;
-                    }
-                }
 
                 if (rSC && !lG)
                 {
