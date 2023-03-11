@@ -7,27 +7,35 @@ namespace AntMonkePC
     [ModdedGamemode]
     [BepInDependency("org.legoandmars.gorillatag.utilla", "1.6.7")]
     [BepInPlugin(PluginInfo.GUID, PluginInfo.Name, PluginInfo.Version)]
-    public class AntPlugin : BaseUnityPlugin
+    public class AirBenderBlender : BaseUnityPlugin
     {
         bool inRoom;
         XRNode rNode = XRNode.RightHand;
         XRNode lNode = XRNode.LeftHand;
+        private bool initialized;
 
         void OnEnable()
         {
-            GorillaLocomotion.Player.Instance.gameObject.GetComponent<SizeManager>().enabled = false;
+            if (initialized)
+            {
+                GorillaLocomotion.Player.Instance.gameObject.GetComponent<SizeManager>().enabled = false;
+            }
             HamburgerPickles.ExtraPickles();
         }
 
         void OnDisable()
         {
-            GorillaLocomotion.Player.Instance.gameObject.GetComponent<SizeManager>().enabled = true;
-            GorillaLocomotion.Player.Instance.scale = 1f;
+            if (initialized)
+            {
+                GorillaLocomotion.Player.Instance.gameObject.GetComponent<SizeManager>().enabled = true;
+                GorillaLocomotion.Player.Instance.scale = 1f;
+            }
             HamburgerPickles.NoPicklesPls();
         }
 
         void FixedUpdate()
         {
+            if (!initialized) initialized = true;
             if (inRoom)
             {
                 bool rSC;
